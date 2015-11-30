@@ -1,0 +1,11 @@
+body {
+  font-family: $base-font-family;
+  @include font-size($base-font-size , $base-line-height);
+}
+
+.browserupgrade {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
