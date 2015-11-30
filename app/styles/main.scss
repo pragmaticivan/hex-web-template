@@ -30,9 +30,39 @@ $icon-font-path: '../fonts/';
   margin-bottom: 60px;
   h2 {
     color: #ededed;
-    font-size: 40px;
+    font-size: 45px;
     font-weight: 100;
     margin-bottom: 30px;
+  }
+  .input-group {
+    background: #fff;
+    padding: 1px 2px;
+    border-radius: 4px;
+  }
+  .btn-search {
+    background: #ffffff;
+    span {
+      color: #adb3b6;
+    }
+  }
+  input{
+    box-shadow: none;
+    border:none;
+    &::-webkit-input-placeholder {
+       color: #8e899c;
+    }
+
+    &:-moz-placeholder { /* Firefox 18- */
+       color: #8e899c;
+    }
+
+    &::-moz-placeholder {  /* Firefox 19+ */
+       color: #8e899c;
+    }
+
+    &:-ms-input-placeholder {
+       color: #8e899c;
+    }
   }
 }
 
