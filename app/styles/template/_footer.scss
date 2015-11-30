@@ -19,12 +19,13 @@
           background: #9799a5;
         }
         a {
-          &:hover {
-            text-decoration: none;
-          }
           padding: 10px 10px;
           display: block;
           color: #ffffff;
+          font-size: 15px;
+          &:hover {
+            text-decoration: none;
+          }
         }
       }
     }
