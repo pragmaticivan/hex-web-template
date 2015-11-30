@@ -7,7 +7,7 @@
 
 .navbar-default .navbar-brand {
   color: #ffffff;
-  @include font-size(25 , 19);
+  @include font-size(32 , 19);
   &:hover {
     color: #e5e5e5;
   }
@@ -23,7 +23,7 @@
 .navbar-default .navbar-nav > li > a {
   color: #ffffff;
   height: 70px;
-  @include font-size(20 , 115);
+  @include font-size(26 , 115);
   padding-top: 0;
   padding-bottom: 0;
   &:hover {
