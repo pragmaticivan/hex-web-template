@@ -1,0 +1,17 @@
+.package-title {
+  color: #714a94;
+  @include font-size(50 , $base-line-height);
+  font-weight: 300;
+  padding: 20px 0 0 0;
+  .version {
+    color: #969da1;
+    @include font-size(20 , $base-line-height);
+    padding: 0 0 0 4px;
+  }
+}
+.package-description {
+  padding: 28px 0 15px 0;
+  line-height: 20px;
+  font-weight: 300;
+  border-bottom: #cccccc 1px solid;
+}
