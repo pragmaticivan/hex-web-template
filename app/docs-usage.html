@@ -1,0 +1,205 @@
+<!doctype html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hex</title>
+
+    <link rel="shortcut icon" href="favicon.png">
+    <link rel="icon" href="favicon.png">
+
+    <link rel="apple-touch-icon" href="images/favicon.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- build:css styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900,100' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/bower_components/highlight/src/styles/default.css">
+
+    <!-- build:css styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+
+    <!-- build:js scripts/vendor/modernizr.js -->
+    <script src="/bower_components/modernizr/modernizr.js"></script>
+    <!-- endbuild -->
+  </head>
+  <body>
+    <!--[if lt IE 10]>
+      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">
+            <span style="font-size: 24px;"><img src="images/hex-logo.png" alt="" /></span> Hex
+          </a>
+        </div>
+
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/packages.html">Packages</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Documentation <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-header menu-dropdown-header">Mix</li>
+                <li><a href="/docs/usage">Usage</a></li>
+                <li><a href="/docs/publish">Publishing packages</a></li>
+                <li><a href="/docs/tasks">Tasks</a></li>
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header menu-dropdown-header">Rebar3</li>
+                <li><a href="/docs/rebar3_usage">Usage</a></li>
+                <li><a href="/docs/rebar3_publish">Publishing packages</a></li>
+                <li><a href="http://www.rebar3.org/v3.0/docs/hex-package-management">Tasks</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="/docs/codeofconduct">Code of Conduct</a></li>
+                <li><a href="/docs/mirrors">Mirrors</a></li>
+                <!-- <li><a href="/docs/faq">FAQ</a></li> -->
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container page">
+      <h2 class="page-title">
+        Usage
+      </h2>
+      <h3>Installation</h3>
+      <p>
+        If you want to use Hex without installing Elixir you can use standalone Mix.
+        Download <a href="http://s3.hex.pm/mix">Mix</a>, put it in your <code>PATH</code>
+        and give it executable permissions. Now you can use Mix as if it was installed with Elixir.
+      </p>
+      <p>
+        Mix will automatically prompt you whenever there is a need to use Hex. In case you want to manually install or update hex, simply run <code>$ mix local.hex</code>.
+      </p>
+      <h3>Defining dependencies</h3>
+      <p>
+        Hex integrates with Mix's dependency handling. Dependencies are defined
+        in Mix's format and all the ordinary Mix dependency commands work.
+        In particular, all dependencies without a SCM (<code>:git</code> or <code>:path</code>)
+        are automatically handled by Hex. Hex dependencies are defined in the following format:
+      </p>
+      <p><code>{:package, requirement}</code></p>
+      <p>
+        The version requirement specify which versions of the package you allow.
+        The formats accepted for the requirement are documented in
+        the <a href="http://elixir-lang.org/docs/stable/elixir/Version.html">Version module</a>.
+        Below is an example <code>mix.exs</code> file.
+      </p>
+
+<pre>
+<code class="elixir">
+defmodule MyProject.Mixfile do
+  use Mix.Project
+
+  def project do
+    [app: :my_project,
+     version: "0.0.1",
+     elixir: "~> 0.13.0",
+     deps: deps()]
+  end
+
+  def application, do: []
+
+  defp deps do
+    [{:ecto, "~> 0.11.3"},
+     {:postgrex, "~> 0.8.1"},
+     {:cowboy, github: "extend/cowboy"}]
+  end
+end
+</code>
+</pre>
+
+      <h3>Fetching dependencies</h3>
+      <p>
+        <code>$ mix deps.get</code> will fetch dependencies that were not
+        already fetched. Dependency fetching is repeatable, Mix will
+        lock the version of a dependency in the lockfile to ensure that
+        all developers will get the same version
+        (always commit <code>mix.lock</code> to version control). <code>$ mix deps.update</code>
+        will update the dependency and write the updated version to the lockfile.
+      </p>
+      <p>
+        When Mix tries to fetch Hex packages that are not locked, dependency
+        resolution will be performed to find a set of packages that satisfies
+        all version requirements. The resolution process will always try to
+        use the latest version of all packages. Because of the nature of
+        dependency resolution Hex may sometimes fail to find a compatible
+        set of dependencies. This can be resolved by unlocking dependencies
+        with <code>$ mix deps.unlock</code>, more unlocked dependencies
+        give Hex a larger selection of package versions to work with.
+      </p>
+    </div>
+
+
+    <div class="footer">
+      <div class="container made-with-love">
+        Made with ♥ by Eric Meadows-Jönsson under Apache license
+      </div>
+      <div class="footer-nav">
+        <div class="container">
+          <ul>
+            <li>
+              <a href="#">about hex</a>
+            </li>
+            <li>
+              <a href="#">github</a>
+            </li>
+            <li>
+              <a href="#">twitter</a>
+            </li>
+            <li>
+              <a href="#">support</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+    <script>
+      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+      e.src='https://www.google-analytics.com/analytics.js';
+      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+      ga('create','UA-49056880-1');ga('send','pageview');
+    </script>
+
+
+    <!-- build:js scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js scripts/plugins.js -->
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/affix.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/alert.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/dropdown.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tooltip.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/modal.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/transition.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/button.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/popover.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/carousel.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/scrollspy.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/collapse.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tab.js"></script>
+    <!-- endbuild -->
+    <script src="/bower_components/highlight/src/highlight.js"></script>
+    <!-- build:js scripts/main.js -->
+    <script src="scripts/main.js"></script>
+    <scrip>hljs.initHighlightingOnLoad();</scrip>
+    <!-- endbuild -->
+  </body>
+</html>
